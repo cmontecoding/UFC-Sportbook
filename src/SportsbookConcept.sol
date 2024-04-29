@@ -39,11 +39,11 @@ contract Sportsbook {
         require(sideA != address(0) && sideB != address(0), "Sportsbook: both sides must bet");
         if (sideAWon) {
             ///@dev payout side A
-            (bool sent, bytes memory data) = sideA.call{value: address(this).balance}("");
+            (bool sent, ) = sideA.call{value: address(this).balance}("");
             require(sent, "Failed to send Ether");
         } else {
             ///@dev payout side B
-            (bool sent, bytes memory data) = sideB.call{value: address(this).balance}("");
+            (bool sent, ) = sideB.call{value: address(this).balance}("");
             require(sent, "Failed to send Ether");
         }
         /// @dev reset the sides
